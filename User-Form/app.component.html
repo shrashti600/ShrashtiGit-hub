@@ -1,0 +1,135 @@
+<div class="container">
+  <h1 class="text-center">User Form</h1>
+  <form>
+    <!-- -----------User Name-------------- -->
+
+    <div class="row form-group">
+      <div class="col-2"><label for="name">Name:</label></div>
+      <div class="col-9">
+        <input
+          type="text"
+          id="name"
+          name="name"
+          class="form-control"
+          [(ngModel)]="name1"
+          [ngModelOptions]="{ standalone: true }"
+          required
+          minlength="4"
+          #name="ngModel"
+        />
+        <div
+          *ngIf="name.invalid && (name.dirty || name.touched)"
+          class="alert alert-danger"
+        >
+          <div *ngIf="name.errors.required">
+            Name is required.
+          </div>
+          <div *ngIf="name.errors.minlength">
+            Name must be 4 Character long.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- -------------User DOB------------- -->
+
+    <div class="row form-group">
+      <div class="col-2"><label for="dob">Date of Birth:</label></div>
+      <div class="col-9">
+        <input
+          type="date"
+          id="dob"
+          name="dob"
+          class="form-control"
+          [(ngModel)]="dob1"
+          [ngModelOptions]="{ standalone: true }"
+          max="{{ minAge }}"
+          #dob="ngModel"
+        />
+        <div
+          *ngIf="dob.invalid && (dob.dirty || dob.touched)"
+          class="alert alert-danger"
+        >
+          <div *ngIf="name.errors.max">
+            Name must be 4 Character long.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--          User Email         -->
+
+    <div class="row form-group">
+      <div class="col-2"><label for="email">Email:</label></div>
+      <div class="col-9">
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="form-control"
+          [(ngModel)]="email1"
+          [ngModelOptions]="{ standalone: true }"
+          required
+          email
+          #email="ngModel"
+        />
+        <div
+          *ngIf="email.invalid && (email.dirty || email.touched)"
+          class="alert alert-danger"
+        >
+          <div *ngIf="email.errors.required">
+            Email is required.
+          </div>
+          <div *ngIf="email.errors.email">
+            Email is invalid.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--          User Phone number         -->
+
+    <div class="row form-group">
+      <div class="col-2"><label for="num">Phone Number:</label></div>
+      <div class="col-9">
+        <input
+          type="number"
+          id="num"
+          name="num"
+          class="form-control"
+          [(ngModel)]="num1"
+          [ngModelOptions]="{ standalone: true }"
+          required
+          min="10"
+          #num="ngModel"
+        />
+        <div
+          *ngIf="num.invalid && (num.dirty || num.touched)"
+          class="alert alert-danger"
+        >
+          <div *ngIf="num.errors.required">
+            Number is required.
+          </div>
+          <div *ngIf="num.errors.min">
+            Number is invalid
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--          Submit Button         -->
+
+    <div class="row form-group">
+      <div class="col-11 text-center">
+        <button class="btn btn-primary" (click)="submit()">Submit</button>
+      </div>
+    </div>
+  </form>
+
+  <div *ngIf="show">
+    User Name = {{ name1 }}<br />
+    User DOB = {{ dob1 }}<br />
+    User Email = {{ email1 }}<br />
+    User Phone no. = {{ num1 }}
+  </div>
+</div>
